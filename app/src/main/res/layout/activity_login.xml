@@ -7,7 +7,7 @@
               android:paddingBottom="@dimen/activity_horizontal_margin"
               android:paddingLeft="@dimen/activity_horizontal_margin"
               android:paddingRight="@dimen/activity_horizontal_margin"
-              android:paddingTop="125dp"
+              android:paddingTop="225dp"
               android:background="@drawable/login_bck"
               tools:context="com.example.nirav.indigox.LoginActivity">
 

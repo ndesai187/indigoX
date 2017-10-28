@@ -1,8 +1,11 @@
 package com.example.nirav.indigox;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,9 +15,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.Toast;
+import com.google.zxing.Result;
+import me.dm7.barcodescanner.zxing.ZXingScannerView;
+//import com.google.zxing.integration.android.*;
 
 public class HomePageActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,
+        ZXingScannerView.ResultHandler {
+
+    private static final int REQUEST_CAMERA = 1;
+    private ZXingScannerView scannerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +44,8 @@ public class HomePageActivity extends AppCompatActivity
             }
         });
 
+
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -40,6 +54,61 @@ public class HomePageActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //setContentView(R.layout.content_home_page);
+        Button addSamplerButton = (Button) findViewById(R.id.add_sampler);
+        addSamplerButton.setClickable(true);
+        addSamplerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Context context = getApplicationContext();
+                CharSequence msg = "Button Pressed...";
+                int duration = Toast.LENGTH_LONG;
+
+                Toast toast = Toast.makeText(context, msg, duration);
+                toast.show();
+                //addSamplerScanner();
+            }
+        });
+
+        Button viewSamplerButton = (Button) findViewById(R.id.view_sampler);
+        addSamplerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewSamplerInfo();
+            }
+        });
+    }
+
+    /**
+     * Triggers BarCode scanner to map Sampler information
+     */
+    private void addSamplerScanner(){
+        scannerView = new ZXingScannerView(this);
+        setContentView(scannerView);
+        scannerView.setResultHandler(this);
+        scannerView.startCamera();
+    }
+    /**
+     * View BarCode scanner information
+     */
+    private void viewSamplerInfo() {
+    }
+
+    @Override
+    public void handleResult(Result result) {
+        String scanResult = result.getText();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Scan Result");
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                scannerView.resumeCameraPreview(HomePageActivity.this);
+            }
+        });
+        builder.setMessage(scanResult);
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
     @Override
@@ -98,4 +167,5 @@ public class HomePageActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }
