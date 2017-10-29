@@ -6,9 +6,14 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
     <uses-permission android:name="android.permission.READ_PROFILE"/>
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-feature android:name="android.hardware.camera2" />
+    <uses-feature android:name="android.hardware.camera.autofocus"/>
+
+    <!-- To access Google+ APIs: -->
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
             android:allowBackup="true"
@@ -29,7 +34,11 @@
         <activity
                 android:name=".HomePageActivity"
                 android:label="@string/title_activity_home_page"
+                android:parentActivityName=".LoginActivity"
                 android:theme="@style/AppTheme">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".LoginActivity"/>
         </activity>
     </application>
 

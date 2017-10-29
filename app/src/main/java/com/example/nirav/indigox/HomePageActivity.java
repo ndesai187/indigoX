@@ -5,7 +5,9 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,24 +18,43 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.Toast;
+import com.example.nirav.indigox.Fragments.HomeFragment;
 import com.google.zxing.Result;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
-//import com.google.zxing.integration.android.*;
 
 public class HomePageActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,
-        ZXingScannerView.ResultHandler {
+        implements ZXingScannerView.ResultHandler {
+    //implements NavigationView.OnNavigationItemSelectedListener {
 
-    private static final int REQUEST_CAMERA = 1;
+    FragmentManager fragmentManager;
+    ActionBarDrawerToggle toggle;
+    DrawerLayout drawer;
+    Toolbar toolbar;
+    FrameLayout frameLayout;
+    NavigationView navigationView;
+    private static final int REQUEST_CAMERA = 0;
     private ZXingScannerView scannerView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        fragmentManager = getSupportFragmentManager();
+
+        setupView();
+        if (savedInstanceState == null) showHome();
+
+    }
+
+    private void setupView() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        frameLayout = (FrameLayout) findViewById(R.id.content_frame);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -44,71 +65,25 @@ public class HomePageActivity extends AppCompatActivity
             }
         });
 
-
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-        //setContentView(R.layout.content_home_page);
-        Button addSamplerButton = (Button) findViewById(R.id.add_sampler);
-        addSamplerButton.setClickable(true);
-        addSamplerButton.setOnClickListener(new View.OnClickListener() {
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View view) {
-                Context context = getApplicationContext();
-                CharSequence msg = "Button Pressed...";
-                int duration = Toast.LENGTH_LONG;
-
-                Toast toast = Toast.makeText(context, msg, duration);
-                toast.show();
-                //addSamplerScanner();
-            }
-        });
-
-        Button viewSamplerButton = (Button) findViewById(R.id.view_sampler);
-        addSamplerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                viewSamplerInfo();
+            public boolean onNavigationItemSelected(MenuItem item) {
+                selectDrawerItem(item);
+                return true;
             }
         });
     }
 
-    /**
-     * Triggers BarCode scanner to map Sampler information
-     */
-    private void addSamplerScanner(){
-        scannerView = new ZXingScannerView(this);
-        setContentView(scannerView);
-        scannerView.setResultHandler(this);
-        scannerView.startCamera();
-    }
-    /**
-     * View BarCode scanner information
-     */
-    private void viewSamplerInfo() {
-    }
-
-    @Override
-    public void handleResult(Result result) {
-        String scanResult = result.getText();
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Scan Result");
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                scannerView.resumeCameraPreview(HomePageActivity.this);
-            }
-        });
-        builder.setMessage(scanResult);
-        AlertDialog alert = builder.create();
-        alert.show();
+    private void showHome() {
+        selectDrawerItem(navigationView.getMenu().getItem(0));
+        drawer.openDrawer(GravityCompat.START);
     }
 
     @Override
@@ -143,14 +118,104 @@ public class HomePageActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    private void selectDrawerItem(MenuItem menuItem) {
+        boolean specialToolbarBehaviour = false;
+        Class fragmentClass;
+
+        switch (menuItem.getItemId()) {
+            case R.id.nav_camera:
+                Context context = getApplicationContext();
+                CharSequence msg = "switch case executing...";
+                int duration = Toast.LENGTH_LONG;
+
+                Toast toast = Toast.makeText(context, msg, duration);
+                toast.show();
+                fragmentClass = HomeFragment.class;
+                break;
+            /*case R.id.drawer_favorites:
+                fragmentClass = FavoritesFragment.class;
+                specialToolbarBehaviour = true;
+                break;
+            case R.id.drawer_settings:
+                fragmentClass = SettingsFragment.class;
+                break;
+            */
+            default:
+                CharSequence msg1 = "default code executing...";
+                context = getApplicationContext();
+                duration = Toast.LENGTH_LONG;
+                Toast toast1 = Toast.makeText(context, msg1, duration);
+                toast1.show();
+                fragmentClass = HomeFragment.class;
+                break;
+        }
+
+        try {
+            Fragment fragment = (Fragment) fragmentClass.newInstance();
+            fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        //setToolbarElevation(specialToolbarBehaviour);
+        menuItem.setChecked(true);
+        setTitle(menuItem.getTitle());
+        drawer.closeDrawers();
+    }
+
+    @Override
+    public void handleResult(Result result) {
+        String scanResult = result.getText();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Scan Result");
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                scannerView.resumeCameraPreview(HomePageActivity.this);
+            }
+        });
+        builder.setMessage(scanResult);
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    public void addSamplerScanner(View v) {
+
+        Button addSamplerButton = (Button) findViewById(R.id.add_sampler);
+        addSamplerButton.setClickable(true);
+        addSamplerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startSamplerScanner();
+            }
+        });
+
+    }
+
+    private void startSamplerScanner() {
+        scannerView = new ZXingScannerView(this);
+        setContentView(scannerView);
+        scannerView.setResultHandler(this);
+        scannerView.startCamera();
+    }
+
+    private void viewSamplerInfo() {
+    }
+
+    /*
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
+        selectDrawerItem(item);
+        Class fragmentClass = null;
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
             // Handle the camera action
+            //fragmentClass = HomeFragment.class;
+            fragmentClass = PlusOneFragment.class;
+
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
@@ -162,10 +227,18 @@ public class HomePageActivity extends AppCompatActivity
         } else if (id == R.id.nav_send) {
 
         }
+        try {
+        Fragment fragment = (Fragment) fragmentClass.newInstance();
+        fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+
         return true;
     }
+    */
 
 }
