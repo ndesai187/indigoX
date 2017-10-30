@@ -1,12 +1,11 @@
 package com.example.nirav.indigox;
 
 import android.content.Context;
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -21,22 +20,14 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 import com.example.nirav.indigox.Fragments.HomeFragment;
-import com.google.zxing.Result;
-import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
-public class HomePageActivity extends AppCompatActivity
-        implements ZXingScannerView.ResultHandler {
-    //implements NavigationView.OnNavigationItemSelectedListener {
-
+public class HomePageActivity extends AppCompatActivity {
     FragmentManager fragmentManager;
     ActionBarDrawerToggle toggle;
     DrawerLayout drawer;
     Toolbar toolbar;
     FrameLayout frameLayout;
     NavigationView navigationView;
-    private static final int REQUEST_CAMERA = 0;
-    private ZXingScannerView scannerView;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +74,7 @@ public class HomePageActivity extends AppCompatActivity
 
     private void showHome() {
         selectDrawerItem(navigationView.getMenu().getItem(0));
-        drawer.openDrawer(GravityCompat.START);
+        //drawer.openDrawer(GravityCompat.START);
     }
 
     @Override
@@ -119,7 +110,6 @@ public class HomePageActivity extends AppCompatActivity
     }
 
     private void selectDrawerItem(MenuItem menuItem) {
-        boolean specialToolbarBehaviour = false;
         Class fragmentClass;
 
         switch (menuItem.getItemId()) {
@@ -157,26 +147,9 @@ public class HomePageActivity extends AppCompatActivity
             e.printStackTrace();
         }
 
-        //setToolbarElevation(specialToolbarBehaviour);
         menuItem.setChecked(true);
         setTitle(menuItem.getTitle());
         drawer.closeDrawers();
-    }
-
-    @Override
-    public void handleResult(Result result) {
-        String scanResult = result.getText();
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Scan Result");
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                scannerView.resumeCameraPreview(HomePageActivity.this);
-            }
-        });
-        builder.setMessage(scanResult);
-        AlertDialog alert = builder.create();
-        alert.show();
     }
 
     public void addSamplerScanner(View v) {
@@ -186,23 +159,17 @@ public class HomePageActivity extends AppCompatActivity
         addSamplerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startSamplerScanner();
+                Intent i = new Intent(HomePageActivity.this, StartScannerActivity.class);
+                startActivity(i);
             }
         });
 
     }
 
-    private void startSamplerScanner() {
-        scannerView = new ZXingScannerView(this);
-        setContentView(scannerView);
-        scannerView.setResultHandler(this);
-        scannerView.startCamera();
-    }
+}
 
-    private void viewSamplerInfo() {
-    }
+/*
 
-    /*
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -239,6 +206,4 @@ public class HomePageActivity extends AppCompatActivity
 
         return true;
     }
-    */
-
-}
+ */
