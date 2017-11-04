@@ -37,7 +37,7 @@ public class HomePageActivity extends AppCompatActivity {
         fragmentManager = getSupportFragmentManager();
 
         setupView();
-        if (savedInstanceState == null) showHome();
+        //if (savedInstanceState == null) showHome();
 
     }
 
@@ -140,12 +140,15 @@ public class HomePageActivity extends AppCompatActivity {
                 break;
         }
 
+        /*
         try {
+
             Fragment fragment = (Fragment) fragmentClass.newInstance();
             fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
         } catch (Exception e) {
             e.printStackTrace();
         }
+        */
 
         menuItem.setChecked(true);
         setTitle(menuItem.getTitle());
@@ -160,6 +163,20 @@ public class HomePageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(HomePageActivity.this, StartScannerActivity.class);
+                startActivity(i);
+            }
+        });
+
+    }
+
+    public void addReading(View v) {
+
+        Button addReadingButton = (Button) findViewById(R.id.add_reading);
+        addReadingButton.setClickable(true);
+        addReadingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(HomePageActivity.this, AddReadingActivity.class);
                 startActivity(i);
             }
         });

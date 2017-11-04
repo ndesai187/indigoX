@@ -53,7 +53,7 @@ public class IndigoDBHandler extends SQLiteOpenHelper {
     public String getAllCodes() {
         String query = "Select * FROM " + TABLE_BARCODE_SCAN;
         SQLiteDatabase db = this.getWritableDatabase();
-        String output = null;
+        String output = "";
 
         Cursor cursor = db.rawQuery(query, null);
 
