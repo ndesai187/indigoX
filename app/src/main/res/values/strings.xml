@@ -27,4 +27,6 @@
     <string name="link_sampler_fragment">Sampler</string>
     <string name="geo_weather_fragment">GeoWeather</string>
     <string name="add_reading_data_fragment">Readings</string>
+    <string name="title_activity_view_reading">ViewReadingActivity</string>
+    <string name="title_activity_view_scan_codes">ViewScanCodesActivity</string>
 </resources>

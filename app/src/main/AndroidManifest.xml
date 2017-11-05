@@ -41,13 +41,31 @@
                     android:value=".LoginActivity"/>
         </activity>
         <activity
-                android:name=".StartScannerActivity"
+                android:name=".MainPage.StartScannerActivity"
                 android:label="@string/title_start_scanner_page"
                 android:theme="@style/AppTheme">
         </activity>
         <activity
-                android:name=".AddReadingActivity"
+                android:name=".MainPage.AddReadingActivity"
                 android:label="@string/title_activity_add_reading"
+                android:parentActivityName=".HomePageActivity"
+                android:theme="@style/AppTheme">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="com.example.nirav.indigox.HomePageActivity"/>
+        </activity>
+        <activity
+                android:name=".MainPage.ViewReadingActivity"
+                android:label="@string/title_activity_view_reading"
+                android:parentActivityName=".HomePageActivity"
+                android:theme="@style/AppTheme">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="com.example.nirav.indigox.HomePageActivity"/>
+        </activity>
+        <activity
+                android:name=".MainPage.ViewScanCodesActivity"
+                android:label="@string/title_activity_view_scan_codes"
                 android:parentActivityName=".HomePageActivity"
                 android:theme="@style/AppTheme">
             <meta-data

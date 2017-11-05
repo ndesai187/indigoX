@@ -29,6 +29,7 @@
 
     <Button
             android:id="@+id/view_sampler"
+            android:onClick="viewSamplerInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="View \nSampler"
@@ -64,6 +65,7 @@
 
     <Button
             android:id="@+id/view_reading"
+            android:onClick="viewReadingInfo"
             style="?android:textAppearanceSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

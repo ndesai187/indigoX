@@ -20,6 +20,11 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 import com.example.nirav.indigox.Fragments.HomeFragment;
+import com.example.nirav.indigox.Fragments.UnderConstructionFragment;
+import com.example.nirav.indigox.MainPage.AddReadingActivity;
+import com.example.nirav.indigox.MainPage.StartScannerActivity;
+import com.example.nirav.indigox.MainPage.ViewReadingActivity;
+import com.example.nirav.indigox.MainPage.ViewScanCodesActivity;
 
 public class HomePageActivity extends AppCompatActivity {
     FragmentManager fragmentManager;
@@ -111,10 +116,11 @@ public class HomePageActivity extends AppCompatActivity {
 
     private void selectDrawerItem(MenuItem menuItem) {
         Class fragmentClass;
+        Context context;
 
         switch (menuItem.getItemId()) {
             case R.id.nav_camera:
-                Context context = getApplicationContext();
+                context = getApplicationContext();
                 CharSequence msg = "switch case executing...";
                 int duration = Toast.LENGTH_LONG;
 
@@ -136,19 +142,20 @@ public class HomePageActivity extends AppCompatActivity {
                 duration = Toast.LENGTH_LONG;
                 Toast toast1 = Toast.makeText(context, msg1, duration);
                 toast1.show();
-                fragmentClass = HomeFragment.class;
+                fragmentClass = UnderConstructionFragment.class;
                 break;
         }
 
-        /*
         try {
-
             Fragment fragment = (Fragment) fragmentClass.newInstance();
             fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
-        } catch (Exception e) {
-            e.printStackTrace();
+
+        } catch (InstantiationException e1) {
+            e1.printStackTrace();
+        } catch (IllegalAccessException e1) {
+            e1.printStackTrace();
         }
-        */
+
 
         menuItem.setChecked(true);
         setTitle(menuItem.getTitle());
@@ -156,7 +163,6 @@ public class HomePageActivity extends AppCompatActivity {
     }
 
     public void addSamplerScanner(View v) {
-
         Button addSamplerButton = (Button) findViewById(R.id.add_sampler);
         addSamplerButton.setClickable(true);
         addSamplerButton.setOnClickListener(new View.OnClickListener() {
@@ -166,11 +172,9 @@ public class HomePageActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
     }
 
     public void addReading(View v) {
-
         Button addReadingButton = (Button) findViewById(R.id.add_reading);
         addReadingButton.setClickable(true);
         addReadingButton.setOnClickListener(new View.OnClickListener() {
@@ -180,7 +184,30 @@ public class HomePageActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+    }
 
+    public void viewSamplerInfo(View v) {
+        Button viewSamplerButton = (Button) findViewById(R.id.view_sampler);
+        viewSamplerButton.setClickable(true);
+        viewSamplerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(HomePageActivity.this, ViewScanCodesActivity.class);
+                startActivity(i);
+            }
+        });
+    }
+
+    public void viewReadingInfo(View v) {
+        Button viewReadingButton = (Button) findViewById(R.id.view_reading);
+        viewReadingButton.setClickable(true);
+        viewReadingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(HomePageActivity.this, ViewReadingActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
 }

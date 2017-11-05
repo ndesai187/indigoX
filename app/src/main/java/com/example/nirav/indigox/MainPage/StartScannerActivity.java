@@ -1,4 +1,4 @@
-package com.example.nirav.indigox;
+package com.example.nirav.indigox.MainPage;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -6,9 +6,10 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
+import com.example.nirav.indigox.R;
 import com.google.zxing.Result;
 import com.nirav.indigox.database.BarCodeScan;
-import com.nirav.indigox.database.IndigoDBHandler;
+import com.nirav.indigox.database.IndigoDBManager;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 public class StartScannerActivity extends AppCompatActivity
@@ -16,11 +17,14 @@ implements ZXingScannerView.ResultHandler{
 
     private static final int REQUEST_CAMERA = 0;
     private ZXingScannerView scannerView;
+    private IndigoDBManager dbManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_home_page);
+        dbManager = new IndigoDBManager(this);
+        dbManager.open();
         startSamplerScanner();
     }
 
@@ -42,10 +46,8 @@ implements ZXingScannerView.ResultHandler{
     }
 
     private void addScanCodetoDB(String scanText) {
-        IndigoDBHandler dbHandler = new IndigoDBHandler(this,null,null,1);
-
         BarCodeScan codeScan = new BarCodeScan(scanText.toString());
-        dbHandler.addSamplerCode(codeScan);
+        dbManager.addSamplerCode(codeScan);
     }
 
 
@@ -71,14 +73,15 @@ implements ZXingScannerView.ResultHandler{
     public void onDestroy(){
         super.onDestroy();
         scannerView.stopCamera();
-        IndigoDBHandler dbHandler = new IndigoDBHandler(this,null,null,1);
-        Context context = getApplicationContext();
-        CharSequence msg = "fetching from DB : " + dbHandler.getAllCodes().toString();
-        int duration = Toast.LENGTH_LONG;
 
+        Context context = getApplicationContext();
+        CharSequence msg = "fetching from DB : " + dbManager.getAllCodes().toString();
+        int duration = Toast.LENGTH_LONG;
         Toast toast = Toast.makeText(context, msg, duration);
         toast.show();
+        dbManager.close();
     }
+
 
     private void viewSamplerInfo() {
     }

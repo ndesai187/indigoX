@@ -1,4 +1,4 @@
-package com.example.nirav.indigox;
+package com.example.nirav.indigox.MainPage;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

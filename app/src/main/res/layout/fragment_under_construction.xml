@@ -1,0 +1,19 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             android:gravity="center_horizontal"
+             android:background="@drawable/under_construct"
+             tools:context="com.example.nirav.indigox.Fragments.UnderConstructionFragment">
+
+    <android.support.design.widget.NavigationView
+            android:id="@+id/nav_view_under_c"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:fitsSystemWindows="true"
+            app:headerLayout="@layout/nav_header_home_page"
+            app:menu="@menu/activity_home_page_drawer"/>
+
+</FrameLayout>
