@@ -7,6 +7,7 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:showIn="@layout/app_bar_home_page"
+        android:background="@drawable/sailing_4_edited"
         tools:context="com.example.nirav.indigox.HomePageActivity">
 
     <Button
@@ -20,11 +21,11 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.1"
+            app:layout_constraintVertical_bias="0.2"
             app:layout_constraintHorizontal_bias="0.5"
             android:layout_gravity="center_vertical|center_horizontal"
-            android:background="@drawable/round_button"
-            android:textColor="#FFFFFF"
+            android:background="@drawable/round_button_opaque"
+            android:textColor="#ffffff"
             android:textStyle="bold"/>
 
     <Button
@@ -39,10 +40,10 @@
             app:layout_constraintLeft_toRightOf="@+id/add_sampler"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.1"
+            app:layout_constraintVertical_bias="0.2"
             android:layout_gravity="center_vertical|center_horizontal"
-            android:background="@drawable/round_button"
-            android:textColor="#FFFFFF"
+            android:background="@drawable/round_button_opaque"
+            android:textColor="#ffffff"
             android:textStyle="bold"/>
 
     <Button
@@ -57,10 +58,10 @@
             app:layout_constraintLeft_toRightOf="@+id/view_sampler"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.1"
+            app:layout_constraintVertical_bias="0.2"
             android:layout_gravity="center_vertical|center_horizontal"
-            android:background="@drawable/round_button"
-            android:textColor="#FFFFFF"
+            android:background="@drawable/round_button_opaque"
+            android:textColor="#ffffff"
             android:textStyle="bold"/>
 
     <Button
@@ -78,8 +79,8 @@
             app:layout_constraintVertical_bias="0.1"
             app:layout_constraintHorizontal_bias="0.5"
             android:layout_gravity="center_vertical|center_horizontal"
-            android:background="@drawable/round_button"
-            android:textColor="#FFFFFF"
+            android:background="@drawable/round_button_opaque"
+            android:textColor="#ffffff"
             android:textStyle="bold"/>
 
     <android.support.constraint.Guideline

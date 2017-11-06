@@ -75,7 +75,7 @@
                     android:layout_gravity="center_vertical|center_horizontal"
                     android:layout_marginTop="16dp"
                     android:text="@string/action_sign_in"
-                    android:background="@drawable/round_button"
+                    android:background="@drawable/round_button_white"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold"/>
 

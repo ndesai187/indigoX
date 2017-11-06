@@ -3,8 +3,6 @@ package com.example.nirav.indigox;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.View;
@@ -42,7 +40,7 @@ public class HomePageActivity extends AppCompatActivity {
         fragmentManager = getSupportFragmentManager();
 
         setupView();
-        //if (savedInstanceState == null) showHome();
+        if (savedInstanceState == null) showHome();
 
     }
 
@@ -51,15 +49,6 @@ public class HomePageActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         frameLayout = (FrameLayout) findViewById(R.id.content_frame);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(
@@ -119,7 +108,7 @@ public class HomePageActivity extends AppCompatActivity {
         Context context;
 
         switch (menuItem.getItemId()) {
-            case R.id.nav_camera:
+            case R.id.home_screen:
                 context = getApplicationContext();
                 CharSequence msg = "switch case executing...";
                 int duration = Toast.LENGTH_LONG;
@@ -155,7 +144,6 @@ public class HomePageActivity extends AppCompatActivity {
         } catch (IllegalAccessException e1) {
             e1.printStackTrace();
         }
-
 
         menuItem.setChecked(true);
         setTitle(menuItem.getTitle());
@@ -250,4 +238,13 @@ public class HomePageActivity extends AppCompatActivity {
 
         return true;
     }
+
+    FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
  */

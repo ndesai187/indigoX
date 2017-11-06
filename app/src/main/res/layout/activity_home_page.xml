@@ -18,15 +18,9 @@
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-        <include
-                        layout="@layout/app_bar_home_page"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
-        <FrameLayout
-                android:id="@+id/content_frame"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-
+        <include layout="@layout/app_bar_home_page"
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"/>
     </RelativeLayout>
 
     <android.support.design.widget.NavigationView
@@ -36,6 +30,7 @@
             android:layout_gravity="start"
             android:fitsSystemWindows="true"
             app:headerLayout="@layout/nav_header_home_page"
+            android:background="#77C8E6C9"
             app:menu="@menu/activity_home_page_drawer"/>
 
 </android.support.v4.widget.DrawerLayout>

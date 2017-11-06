@@ -1,35 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
     <group android:checkableBehavior="single">
         <item
-                android:id="@+id/nav_camera"
-                android:icon="@drawable/ic_menu_camera"
-                android:title="Import"/>
+                android:id="@+id/home_screen"
+                android:icon="@drawable/icons8_home_page"
+                android:title="Home"
+                android:textColor="#5286EC"
+                android:textStyle="bold"/>
         <item
-                android:id="@+id/nav_gallery"
-                android:icon="@drawable/ic_menu_gallery"
-                android:title="Gallery"/>
+                android:id="@+id/sync_page"
+                android:icon="@drawable/icons8_data_transfer"
+                android:title="Sync Up"
+                android:textColor="#5286EC"
+                android:textStyle="bold"/>
         <item
-                android:id="@+id/nav_slideshow"
-                android:icon="@drawable/ic_menu_slideshow"
-                android:title="Slideshow"/>
-        <item
+                android:id="@+id/weather_report_page"
+                android:icon="@drawable/icons8_stormy_weather"
+                android:title="Weather Report"
+                android:textColor="#5286EC"
+                android:textStyle="bold"/>
+        <!--item
                 android:id="@+id/nav_manage"
                 android:icon="@drawable/ic_menu_manage"
-                android:title="Tools"/>
+                android:title="Tools"/-->
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="More...">
         <menu>
             <item
-                    android:id="@+id/nav_share"
+                    android:id="@+id/settings_page"
                     android:icon="@drawable/ic_menu_share"
-                    android:title="Share"/>
+                    android:title="Settings"
+                    android:textColor="#5286EC"
+                    android:textStyle="bold"/>
             <item
-                    android:id="@+id/nav_send"
+                    android:id="@+id/signing_out"
                     android:icon="@drawable/ic_menu_send"
-                    android:title="Send"/>
+                    android:title="Sign Out"
+                    android:textColor="#5286EC"
+                    android:textStyle="bold"/>
         </menu>
     </item>
 
