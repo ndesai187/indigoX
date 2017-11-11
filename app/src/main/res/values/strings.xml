@@ -34,4 +34,5 @@
     <string name="user_full_name">Name</string>
     <string name="next_page">Next</string>
     <string name="previous_page">Previous</string>
+    <string name="save_reading">Save</string>
 </resources>

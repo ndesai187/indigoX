@@ -54,7 +54,7 @@ public class AddReadingActivity extends AppCompatActivity {
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-
+                mViewPager.setCurrentItem(tab.getPosition());
             }
 
             @Override

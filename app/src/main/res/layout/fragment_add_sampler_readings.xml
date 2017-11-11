@@ -14,7 +14,7 @@
             android:paddingRight="30dp"
             android:orientation="vertical">
         <LinearLayout
-                android:id="@+id/email_login_form"
+                android:id="@+id/add_sampler_reading_form"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -73,42 +73,50 @@
                         android:singleLine="true"/>
             </android.support.design.widget.TextInputLayout>
 
-
-
         </LinearLayout>
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/add_sampler_reading_form"
+                android:paddingTop="30dp">
+            <Button
+                    android:id="@+id/previous_sampler_page"
+                    style="?android:textAppearanceSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintRight_toLeftOf="@+id/save_reading_page"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:text="@string/previous_page"
+                    android:background="@drawable/round_button_opaque"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    app:layout_constraintVertical_bias="1.0"/>
 
-        <Button
-                android:id="@+id/previous_weather_page"
-                style="?android:textAppearanceSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/user_full_name"
-                android:layout_gravity="center_vertical|center_horizontal"
-                app:layout_constraintRight_toLeftOf="@id/next_weather_page"
-                app:layout_constraintLeft_toLeftOf="parent"
-                android:layout_marginTop="30dp"
-                android:text="@string/previous_page"
-                android:background="@drawable/round_button_opaque"
-                android:textColor="#FFFFFF"
-                android:textStyle="bold"/>
+            <Button
+                    android:id="@+id/save_reading_page"
+                    style="?android:textAppearanceSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintRight_toLeftOf="parent"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintLeft_toRightOf="@+id/previous_sampler_page"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:text="@string/save_reading"
+                    android:background="@drawable/round_button_opaque"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    app:layout_constraintVertical_bias="1.0"
+                    android:layout_marginRight="0dp"
+                    android:layout_marginLeft="128dp"/>
+        </android.support.constraint.ConstraintLayout>
 
-        <Button
-                android:id="@+id/next_weather_page"
-                style="?android:textAppearanceSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/user_full_name"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:layout_marginTop="30dp"
-                app:layout_constraintRight_toLeftOf="parent"
-                app:layout_constraintLeft_toLeftOf="@id/next_weather_page"
-                android:text="@string/next_page"
-                android:background="@drawable/round_button_opaque"
-                android:textColor="#FFFFFF"
-                android:textStyle="bold"/>
 
     </LinearLayout>
-
     <!--/ScrollView-->
 
 </FrameLayout>
