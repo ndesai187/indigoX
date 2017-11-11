@@ -1,14 +1,13 @@
 package com.example.nirav.indigox.Fragments;
 
-import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.example.nirav.indigox.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,7 +26,6 @@ public class AddProfileFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
     private OnFragmentInteractionListener mListener;
 
     public AddProfileFragment() {
@@ -65,7 +63,29 @@ public class AddProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        /*final float radius = 20;
+
+        final View decorView = inflater.inflate(R.layout.fragment_add_profile, container, false);
+        //Activity's root View. Can also be root View of your layout (preferably)
+        final ViewGroup rootView = (ViewGroup) decorView.findViewById(android.R.id.content);
+        //set background, if your root layout doesn't have one
+        final Drawable windowBackground = decorView.getBackground();
+
+        blurView.setupWith(rootView)
+                .windowBackground(windowBackground)
+                .blurAlgorithm(new RenderScriptBlur(this))
+                .blurRadius(radius);
+        */
         return inflater.inflate(R.layout.fragment_add_profile, container, false);
+    }
+
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState){
+        super.onViewCreated(view,savedInstanceState);
+        //getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND);        //FrameLayout groupedView = (FrameLayout) getActivity().findViewById(R.id.profile_frame);
+        //groupedView.addView(new ReadingCustomView(getActivity(),null ));
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event

@@ -5,11 +5,92 @@
              tools:context="com.example.nirav.indigox.Fragments.GeoWeatherFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-            android:id="@+id/textView"
+    <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:text="@string/geo_weather_fragment"
-            android:textAppearance="?android:attr/textAppearanceLarge"/>
+            android:layout_height="wrap_content"
+            android:paddingTop="80dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:orientation="vertical">
+        <LinearLayout
+                android:id="@+id/email_login_form"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/round_corners_view">
+
+            <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="#1976D2">
+
+                <AutoCompleteTextView
+                        android:id="@+id/boat_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/boat_name"
+                        android:inputType="text|textAutoCorrect"
+                        android:maxLines="1"
+                        android:singleLine="true"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="#1976D2">
+
+                <EditText
+                        android:id="@+id/user_email"
+                        android:textColor="#1976D2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress"
+                        android:hint="@string/user_email"
+                        android:textColorHint="@color/hintColorIndigo"
+                        android:maxLines="1"
+                        android:singleLine="true"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="#1976D2">
+
+                <EditText
+                        android:id="@+id/user_full_name"
+                        android:textColor="#1976D2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/user_full_name"
+                        android:textColorHint="@color/hintColorIndigo"
+                        android:imeActionId="@+id/login"
+                        android:imeActionLabel="@string/action_sign_in_short"
+                        android:imeOptions="actionUnspecified"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:singleLine="true"/>
+            </android.support.design.widget.TextInputLayout>
+
+
+
+        </LinearLayout>
+
+        <Button
+                android:id="@+id/next_weather_page"
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/user_full_name"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:text="@string/next_page"
+                android:background="@drawable/round_button_opaque"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"/>
+
+    </LinearLayout>
+
+    <!--/ScrollView-->
+
 </FrameLayout>
