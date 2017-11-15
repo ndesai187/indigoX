@@ -8,25 +8,48 @@
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="550dp"
             android:paddingTop="80dp"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
             android:orientation="vertical">
+        <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbarSize="10dp"
+                android:scrollbarThumbVertical="@drawable/geo_custom_scroll_style">
         <LinearLayout
                 android:id="@+id/geoweather_form"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:background="@drawable/round_corners_view">
-            <TextView
-                    android:layout_width="wrap_content"
+            <LinearLayout
+                    android:id="@+id/geoweather_form_header"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Geo Location"
-                    android:textColor="@color/hintColorIndigo"
-                    android:textStyle="bold"
-                    android:paddingLeft="10dp"
-                    android:textSize="20sp"/>
+                    android:orientation="horizontal"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="10dp">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Geo Location"
+                        android:layout_weight="1"
+                        android:textColor="@color/hintColorIndigo"
+                        android:textStyle="bold"
+                        android:textSize="20sp"/>
+
+                <Button
+                        android:id="@+id/boat_location_button"
+                        style="?android:textAppearanceSmall"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:gravity="right"
+                        android:background="@drawable/icons8_location"/>
+
+            </LinearLayout>
+
 
             <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
@@ -34,11 +57,13 @@
                     android:textColorHint="#1976D2">
 
                 <AutoCompleteTextView
-                        android:id="@+id/boat_name"
+                        android:id="@+id/geo_latitude"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/boat_name"
-                        android:inputType="text|textAutoCorrect"
+                        android:hint="@string/in_latitude"
+                        android:textColor="#1976D2"
+                        android:textColorHint="@color/hintColorIndigo"
+                        android:inputType="numberDecimal|numberSigned"
                         android:maxLines="1"
                         android:singleLine="true"/>
 
@@ -50,21 +75,36 @@
                     android:textColorHint="#1976D2">
 
                 <EditText
-                        android:id="@+id/user_email"
+                        android:id="@+id/geo_longitude"
                         android:textColor="#1976D2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textEmailAddress"
-                        android:hint="@string/user_email"
+                        android:inputType="numberDecimal|numberSigned"
+                        android:hint="@string/in_longitude"
                         android:textColorHint="@color/hintColorIndigo"
                         android:maxLines="1"
                         android:singleLine="true"/>
             </android.support.design.widget.TextInputLayout>
 
+            <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="#1976D2">
+
+                <EditText
+                        android:id="@+id/geo_elevation"
+                        android:textColor="#1976D2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal|numberSigned"
+                        android:hint="@string/in_elevation"
+                        android:textColorHint="@color/hintColorIndigo"
+                        android:maxLines="1"
+                        android:singleLine="true"/>
+            </android.support.design.widget.TextInputLayout>
             <!--View android:paddingTop="40dp"
                   android:paddingBottom="40dp"
                   style="@style/Divider"/-->
-
 
             <ImageView
                     android:id="@+id/imageView1"
@@ -89,11 +129,91 @@
                     android:textColorHint="#1976D2">
 
                 <EditText
-                        android:id="@+id/user_full_name"
+                        android:id="@+id/weather_bar_press"
                         android:textColor="#1976D2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/user_full_name"
+                        android:hint="@string/in_bar_press"
+                        android:textColorHint="@color/hintColorIndigo"
+                        android:imeActionId="@+id/login"
+                        android:imeActionLabel="@string/action_sign_in_short"
+                        android:imeOptions="actionUnspecified"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:singleLine="true"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="#1976D2">
+
+                <EditText
+                        android:id="@+id/weather_cloud_cover"
+                        android:textColor="#1976D2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/in_cloud_cover"
+                        android:textColorHint="@color/hintColorIndigo"
+                        android:imeActionId="@+id/login"
+                        android:imeActionLabel="@string/action_sign_in_short"
+                        android:imeOptions="actionUnspecified"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:singleLine="true"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="#1976D2">
+
+                <EditText
+                        android:id="@+id/weather_wave_height"
+                        android:textColor="#1976D2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/in_wave_height"
+                        android:textColorHint="@color/hintColorIndigo"
+                        android:imeActionId="@+id/login"
+                        android:imeActionLabel="@string/action_sign_in_short"
+                        android:imeOptions="actionUnspecified"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:singleLine="true"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="#1976D2">
+
+                <EditText
+                        android:id="@+id/weather_wave_direction"
+                        android:textColor="#1976D2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/in_wave_direction"
+                        android:textColorHint="@color/hintColorIndigo"
+                        android:imeActionId="@+id/login"
+                        android:imeActionLabel="@string/action_sign_in_short"
+                        android:imeOptions="actionUnspecified"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:singleLine="true"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="#1976D2">
+
+                <EditText
+                        android:id="@+id/weather_wind"
+                        android:textColor="#1976D2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/in_wind_speed"
                         android:textColorHint="@color/hintColorIndigo"
                         android:imeActionId="@+id/login"
                         android:imeActionLabel="@string/action_sign_in_short"
@@ -104,11 +224,16 @@
             </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
+    </ScrollView>
+    </LinearLayout>
+
+
         <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/geoweather_form"
-                android:paddingTop="30dp">
+                android:paddingBottom="25dp"
+                android:layout_gravity="bottom">
             <Button
                     android:id="@+id/previous_profile_page"
                     style="?android:textAppearanceSmall"
@@ -147,8 +272,5 @@
         </android.support.constraint.ConstraintLayout>
 
 
-    </LinearLayout>
-
-    <!--/ScrollView-->
 
 </FrameLayout>

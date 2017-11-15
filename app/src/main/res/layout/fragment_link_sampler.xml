@@ -6,7 +6,6 @@
              tools:context="com.example.nirav.indigox.Fragments.LinkSamplerFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <!-- TODO: Update blank fragment layout -->
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -21,60 +20,43 @@
                 android:orientation="vertical"
                 android:background="@drawable/round_corners_view">
 
+            <LinearLayout
+                    android:id="@+id/sampler_form_header"
+                    android:orientation="horizontal"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="right"
+                    android:paddingRight="20dp">
+
+                <Button
+                        android:id="@+id/trigger_scanner_button"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:background="@drawable/icons8_refresh_barcode"/>
+
+            </LinearLayout>
+
             <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColorHint="#1976D2">
 
                 <AutoCompleteTextView
-                        android:id="@+id/boat_name"
+                        android:id="@+id/sampler_id"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/boat_name"
+                        android:hint="@string/select_sampler"
                         android:inputType="text|textAutoCorrect"
                         android:maxLines="1"
                         android:singleLine="true"/>
 
             </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColorHint="#1976D2">
-
-                <EditText
-                        android:id="@+id/user_email"
-                        android:textColor="#1976D2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textEmailAddress"
-                        android:hint="@string/user_email"
-                        android:textColorHint="@color/hintColorIndigo"
-                        android:maxLines="1"
-                        android:singleLine="true"/>
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColorHint="#1976D2">
-
-                <EditText
-                        android:id="@+id/user_full_name"
-                        android:textColor="#1976D2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/user_full_name"
-                        android:textColorHint="@color/hintColorIndigo"
-                        android:imeActionId="@+id/login"
-                        android:imeActionLabel="@string/action_sign_in_short"
-                        android:imeOptions="actionUnspecified"
-                        android:inputType="text"
-                        android:maxLines="1"
-                        android:singleLine="true"/>
-            </android.support.design.widget.TextInputLayout>
-
         </LinearLayout>
+
         <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

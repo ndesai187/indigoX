@@ -35,4 +35,13 @@
     <string name="next_page">Next</string>
     <string name="previous_page">Previous</string>
     <string name="save_reading">Save</string>
+    <string name="in_latitude">Latitude</string>
+    <string name="in_longitude">Longitude</string>
+    <string name="in_elevation">Elevation</string>
+    <string name="in_bar_press">Bar Press</string>
+    <string name="in_cloud_cover">Cloud Cover</string>
+    <string name="in_wave_height">Wave Height</string>
+    <string name="in_wave_direction">Wave Direction</string>
+    <string name="in_wind_speed">Wind Speed</string>
+    <string name="select_sampler">Select Sampler</string>
 </resources>
