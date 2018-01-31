@@ -35,6 +35,7 @@
                         android:layout_height="50dp"
                         android:layout_weight="1"
                         android:gravity="right"
+                        android:onClick="activateScanner"
                         android:background="@drawable/icons8_refresh_barcode"/>
 
             </LinearLayout>
@@ -49,6 +50,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/select_sampler"
+                        android:textColor="@color/hintColorIndigo"
                         android:inputType="text|textAutoCorrect"
                         android:maxLines="1"
                         android:singleLine="true"/>

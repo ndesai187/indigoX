@@ -20,7 +20,7 @@ import android.widget.Toast;
 import com.example.nirav.indigox.Fragments.HomeFragment;
 import com.example.nirav.indigox.Fragments.UnderConstructionFragment;
 import com.example.nirav.indigox.MainPage.AddReadingActivity;
-import com.example.nirav.indigox.MainPage.StartScannerActivity;
+import com.example.nirav.indigox.Utils.StartScannerActivity;
 import com.example.nirav.indigox.MainPage.ViewReadingActivity;
 import com.example.nirav.indigox.MainPage.ViewScanCodesActivity;
 

@@ -30,7 +30,7 @@
             android:layout_gravity="start"
             android:fitsSystemWindows="true"
             app:headerLayout="@layout/nav_header_home_page"
-            android:background="#77C8E6C9"
+            android:background="#81C784"
             app:menu="@menu/activity_home_page_drawer"/>
 
 </android.support.v4.widget.DrawerLayout>

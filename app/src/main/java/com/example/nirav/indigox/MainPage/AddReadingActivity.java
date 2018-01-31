@@ -1,14 +1,24 @@
 package com.example.nirav.indigox.MainPage;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 import com.example.nirav.indigox.R;
+import com.example.nirav.indigox.Utils.GPSLocationActivity;
+import com.example.nirav.indigox.Utils.StartScannerActivity;
 
 public class AddReadingActivity extends AppCompatActivity {
 
@@ -26,6 +36,8 @@ public class AddReadingActivity extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+    int requestCodeScan = 7;
+    int requestCodeLocation = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +103,89 @@ public class AddReadingActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void activateScanner(View v) {
+        Button addSamplerButton = (Button) findViewById(R.id.trigger_scanner_button);
+        addSamplerButton.setClickable(true);
+        addSamplerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(AddReadingActivity.this, StartScannerActivity.class);
+                //startActivity(i);
+                startActivityForResult(i, requestCodeScan);
+            }
+        });
+    }
+
+    public void getGPSLocation(View v) {
+        Button addSamplerButton = (Button) findViewById(R.id.boat_location_button);
+        addSamplerButton.setClickable(true);
+        addSamplerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(AddReadingActivity.this, GPSLocationActivity.class);
+                //startActivity(i);
+                startActivityForResult(i, requestCodeLocation);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        String resultBarText = "Dummy Scan ID";
+        Double resultLatitude = 1.0;
+        Double resultLongitude = 2.0;
+        Double resultElevation = 0.0;
+
+        if (requestCode == requestCodeScan) {
+
+            if(resultCode == Activity.RESULT_OK){
+                resultBarText=data.getStringExtra("barCode");
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                //Write code if there's no result
+            }
+
+            EditText editText = (EditText)findViewById(R.id.sampler_id);
+            editText.setText(resultBarText, TextView.BufferType.EDITABLE);
+
+            Context context = getApplicationContext();
+            CharSequence msg = "scanned result : " + resultBarText ;
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, msg, duration);
+            toast.show();
+
+        } else if (requestCode == requestCodeLocation){
+
+            if(resultCode == Activity.RESULT_OK){
+                resultLatitude = data.getDoubleExtra("latitudeResult",1.0);
+                resultLongitude = data.getDoubleExtra("longitudeResult",2.0);
+                resultElevation = data.getDoubleExtra("altitudeResult",0.0);
+
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                //Write code if there's no result
+            }
+
+            EditText editText = (EditText)findViewById(R.id.geo_latitude);
+            editText.setText(Double.toString(resultLatitude), TextView.BufferType.EDITABLE);
+
+            editText = (EditText)findViewById(R.id.geo_longitude);
+            editText.setText(Double.toString(resultLongitude), TextView.BufferType.EDITABLE);
+
+            editText = (EditText)findViewById(R.id.geo_elevation);
+            editText.setText(Double.toString(resultElevation), TextView.BufferType.EDITABLE);
+
+            Context context = getApplicationContext();
+            CharSequence msg = "GPS Location gathered..." ;
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, msg, duration);
+            toast.show();
+
+        }
+
+
+    }//onActivityResult
 
     /**
      * A placeholder fragment containing a simple view.

@@ -1,7 +1,9 @@
-package com.example.nirav.indigox.MainPage;
+package com.example.nirav.indigox.Utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +20,7 @@ implements ZXingScannerView.ResultHandler{
     private static final int REQUEST_CAMERA = 0;
     private ZXingScannerView scannerView;
     private IndigoDBManager dbManager;
+    String scanResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +33,7 @@ implements ZXingScannerView.ResultHandler{
 
     @Override
     public void handleResult(final Result result) {
-        String scanResult = result.getText();
+        scanResult = result.getText();
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Scan Result");
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -73,6 +76,11 @@ implements ZXingScannerView.ResultHandler{
     public void onDestroy(){
         super.onDestroy();
         scannerView.stopCamera();
+
+        Intent returnIntent = new Intent();
+        returnIntent.putExtra("barCode",scanResult);
+        setResult(Activity.RESULT_OK,returnIntent);
+        finish();
 
         Context context = getApplicationContext();
         CharSequence msg = "fetching from DB : " + dbManager.getAllCodes().toString();

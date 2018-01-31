@@ -44,4 +44,5 @@
     <string name="in_wave_direction">Wave Direction</string>
     <string name="in_wind_speed">Wind Speed</string>
     <string name="select_sampler">Select Sampler</string>
+    <string name="title_activity_gpslocation">GPSLocationActivity</string>
 </resources>
