@@ -18,7 +18,7 @@ Android JDK 25, GeoLocation tracking, Camera usage, REST API for remote data cal
 ### Screen prints from app
 1. Login Page
 
-   <img src="https://github.com/ndesai187/indigoX/blob/master/pictures/loginPage.jpg" width="250" height="400">
+   <img src="https://github.com/ndesai187/indigoX/blob/master/pictures/loginPage.jpg" width="250" height="400" hspace="40">
    
 2. Menu and App Options
 
@@ -27,12 +27,11 @@ Android JDK 25, GeoLocation tracking, Camera usage, REST API for remote data cal
    
 3. Sampler barcode scanning and recording
 
-   <br>
-   <img src="https://github.com/ndesai187/indigoX/blob/master/pictures/loginPage.jpg" width="250" height="400">
-   </br>
+   <img src="https://github.com/ndesai187/indigoX/blob/master/pictures/barCodeScanner.jpg" width="250" height="400" hspace="40">
+   <img src="https://github.com/ndesai187/indigoX/blob/master/pictures/scannedDevice.jpg" width="250" height="400" hspace="40">
    
 4. Data Entry from sampler
 
-   <br>
-   <img src="https://github.com/ndesai187/indigoX/blob/master/pictures/loginPage.jpg" width="250" height="400">
-   </br>
+   <img src="https://github.com/ndesai187/indigoX/blob/master/pictures/readingEntry_page1.jpg" width="250" height="400" hspace="40">
+   <img src="https://github.com/ndesai187/indigoX/blob/master/pictures/readinEntry_geo.jpg" width="250" height="400" hspace="40">
+   
