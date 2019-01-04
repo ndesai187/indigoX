@@ -15,9 +15,9 @@ ndesai187
 ### Technology Stack : 
 Android JDK 25, GeoLocation tracking, Camera usage, REST API for remote data calls
 
-## Screen prints from app
+### Screen prints from app
 1. Login Page
-(https://github.com/ndesai187/indigoX/pictures/loginPage.jpg)
+    ![loginPage](https://github.com/ndesai187/indigoX/blob/master/pictures/loginPage.jpg)
 2. Menu and App Options
 3. Sampler barcode scanning and recording
 4. Data Entry from sampler
