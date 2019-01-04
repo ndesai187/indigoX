@@ -17,7 +17,7 @@ Android JDK 25, GeoLocation tracking, Camera usage, REST API for remote data cal
 
 ### Screen prints from app
 1. Login Page
-    ![loginPage](https://github.com/ndesai187/indigoX/blob/master/pictures/loginPage.jpg)
+    ![loginPage](https://github.com/ndesai187/indigoX/blob/master/pictures/loginPage.jpg){:height="700px" width="400px"}
 2. Menu and App Options
 3. Sampler barcode scanning and recording
 4. Data Entry from sampler
